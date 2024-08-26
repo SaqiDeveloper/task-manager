@@ -4,20 +4,19 @@ import * as mongoose from 'mongoose';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task } from '../schemas/task.schema';
-
 @Injectable()
 export class TasksService {
   constructor(
     @InjectModel(Task.name)
     private taskModel: mongoose.Model<Task>,
   ) {}
+
   async create(createTaskDto: CreateTaskDto) {
     const user = await this.taskModel.create(createTaskDto);
     return user;
   }
-
-  async findAll() {
-    const users = await this.taskModel.find();
+  async findAll(userId: any) {
+    const users = await this.taskModel.find({ userId: userId });
     return users;
   }
 
