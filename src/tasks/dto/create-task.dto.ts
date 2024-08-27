@@ -11,4 +11,6 @@ export class CreateTaskDto {
   dueDate: string;
   @IsString()
   userId: string;
+  @IsString()
+  assignTo: string;
 }

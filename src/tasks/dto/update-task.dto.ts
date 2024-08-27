@@ -11,4 +11,6 @@ export class UpdateTaskDto extends PartialType(CreateTaskDto) {
   desc: string;
   @IsDate()
   dueDate: string;
+  @IsString()
+  assignTo: string;
 }

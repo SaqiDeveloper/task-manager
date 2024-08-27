@@ -16,7 +16,9 @@ export class TasksService {
     return user;
   }
   async findAll(userId: any) {
-    const users = await this.taskModel.find({ userId: userId });
+    const users = await this.taskModel.find({
+      $or: [{ userId: userId }, { assignTo: userId }],
+    });
     return users;
   }
 
