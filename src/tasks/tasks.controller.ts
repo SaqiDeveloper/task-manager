@@ -31,6 +31,11 @@ export class TasksController {
     return this.tasksService.findAll(req.user.userId);
   }
 
+  @Get('/status/:status')
+  findByStatus(@Param('status') status: string, @Request() req) {
+    return this.tasksService.findAllByStatus(req.user.userId, status);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.tasksService.findOne(id);

@@ -27,6 +27,14 @@ export class TasksService {
     return user;
   }
 
+  async findAllByStatus(userId: string, status: string) {
+    const user = await this.taskModel.find({
+      $or: [{ userId: userId }, { assignTo: userId }],
+      status: status,
+    });
+    return user;
+  }
+
   async update(id: string, updateTaskDto: UpdateTaskDto) {
     const user = await this.taskModel.findByIdAndUpdate(id, updateTaskDto, {
       new: true,
